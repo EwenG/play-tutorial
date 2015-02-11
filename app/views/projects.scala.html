@@ -1,0 +1,15 @@
+@(projectForm: Form[_root_.projects.Project])
+
+@import views.html.helper
+
+@main("Welcome to Projects") {
+
+    <div id="app">
+
+        @helper.form(action = routes.Application.add){
+            @helper.inputText(projectForm("name"))
+        }
+    </div>
+    <script src="@routes.Assets.at("javascripts/projects.js")" type="text/javascript"></script>
+
+}
