@@ -7,7 +7,8 @@
     <div id="app">
 
         @helper.form(action = routes.Application.add){
-            @helper.inputText(projectForm("name"))
+            @helper.inputText(projectForm("projectName"))
+            <input type="submit" value="Submit"/>
         }
     </div>
     <script src="@routes.Assets.at("javascripts/projects.js")" type="text/javascript"></script>

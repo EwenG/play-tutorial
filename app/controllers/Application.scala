@@ -16,16 +16,19 @@ object Application extends Controller {
     Ok(json)
   }
 
-  def projects_template = Action {
-    Ok(views.html.projects(Form(Forms.mapping("name" -> Forms.text)
+  def buildProjectForm = {
+    Form(Forms.mapping("projectName" -> Forms.text)
       (Project.apply)
-      (Project.unapply))))
+      (Project.unapply))
+  }
+
+  def projects_template = Action {
+    Ok(views.html.projects(buildProjectForm))
   }
 
   def add = Action { implicit request =>
-    val projectForm = Form(Forms.mapping("name" -> Forms.text)
-      (Project.apply)
-      (Project.unapply))
+    val projectForm = buildProjectForm
+    val project = projectForm.bindFromRequest.get
     Ok(views.html.projects(projectForm))
   }
 
